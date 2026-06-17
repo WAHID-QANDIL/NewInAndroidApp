@@ -31,13 +31,15 @@ class HomeViewModel @Inject constructor(
             try {
                 getMoviesUseCase(mapOf(
                     "adult" to "false"
-                )).also { movies ->
-                    uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            movies = movies,
-                            error = null
-                        )
+                )).also { moviesListFlow ->
+                    moviesListFlow.collect { movies ->
+                        uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                movies = movies,
+                                error = null
+                            )
+                        }
                     }
                 }
 

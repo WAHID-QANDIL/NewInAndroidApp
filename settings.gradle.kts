@@ -24,4 +24,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "NewInAndroidApp"
 include(":app")
-include(":mvvm")
