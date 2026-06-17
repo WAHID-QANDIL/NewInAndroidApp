@@ -3,6 +3,7 @@ package com.wahid.newinandroidapp.di
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.wahid.newinandroidapp.data.remote.service.MovieService
 import com.wahid.newinandroidapp.utils.NetworkInterceptor
+import com.wahid.newinandroidapp.utils.addLoggingInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +29,11 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = OkHttpClient.Builder().addInterceptor(NetworkInterceptor()).build()
+    fun provideOkHttpClient() = OkHttpClient
+        .Builder()
+        .addInterceptor(NetworkInterceptor())
+        .addLoggingInterceptor()
+        .build()
 
     @Singleton
     @Provides
